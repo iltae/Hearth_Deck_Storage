@@ -89,7 +89,7 @@ const App: React.FC = () => {
       body: "grant_type=client_credentials",
       headers: {
         Authorization:
-          "Basic YzNmNDY5NGViODE4NDUxOGI4YmViMDg0NTdhMTZlNTQ6UTFiVWQ1RDZhaXlieHBRYTY2akRMcUp2UlBzNThpZzA=",
+          "Basic " + process.env.REACT_APP_OAUTH,
         "Content-Type": "application/x-www-form-urlencoded",
       },
       method: "POST",
