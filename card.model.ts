@@ -1,4 +1,4 @@
-export interface Card {
+export interface CardStructure {
   artistName: string;
   attack: number;
   cardSetId: number;

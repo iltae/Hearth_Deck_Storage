@@ -1,22 +1,41 @@
-type HeroProps =  {
-  heros: { class: string; name: string; image: string }[];
-  onSelectHero: (hero: string) => any;
-}
+import { CardStructure } from "../card.model";
+
+// Props 구조 정의
+type HeroProps = {
+  heros: { class: string; name: string; image: string };
+  currentHeroCardHandler: (card: CardStructure[]) => void;
+};
 
 const HeroSelectButton: React.FC<HeroProps> = (props) => {
+  // 영웅 직업 버튼 클릭시 카드 데이터 호출할 함수
+  const fetchCardHandler = (hero: string): any => {
+    fetch(
+      `https://us.api.blizzard.com/hearthstone/cards?locale=ko_KR&gameMode=arena&pageSize=333&class=${hero},neutral`,
+      {
+        headers: {
+          Authorization:
+            "Bearer " + localStorage.getItem("ACCESS_TOKEN")!.toString(),
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        props.currentHeroCardHandler(data.cards);
+      });
+  };
 
   return (
-    <div style={{ display: "flex", textAlign: "start", paddingLeft: "2px", paddingRight: "2px"}}>
-      {props.heros.map((hero) => (
-        <button
-          key={hero.name}
-          onClick={props.onSelectHero(hero.class)}
-          style={{ width: "9.09%", height: "10vh", margin: "2px" }}
-        >
-          <img src={hero.image} alt={hero.class} style={{ width: "60%" }} />
-        </button>
-      ))}
-    </div>
+    <button
+      className="w-24 h-24 m-4"
+      type="button"
+      onClick={() => fetchCardHandler(props.heros.class)}
+    >
+      <img
+        className="w-full"
+        src={props.heros.image}
+        alt={props.heros.class}
+      />
+    </button>
   );
 };
 
