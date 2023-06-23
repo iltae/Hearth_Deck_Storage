@@ -1,3 +1,4 @@
+
 import { CardStructure } from "../card.model";
 
 import Card from "./Card";
@@ -8,41 +9,44 @@ interface CardsProps {
 }
 
 const CardContainer: React.FC<CardsProps> = (props) => {
+
+  // 카드 등급 분류
+  const commonCard = props.currentHeroCard.filter(
+    (card) => card.rarityId === 1
+  );
+  const rareCard = props.currentHeroCard.filter((card) => card.rarityId === 3);
+  const epicCard = props.currentHeroCard.filter((card) => card.rarityId === 4);
+  const legendaryCard = props.currentHeroCard.filter(
+    (card) => card.rarityId === 5
+  );
+
   return (
-    <>
-      <div className="flex flex-row justify-center my-6 text-2xl">일반</div>
+    <div className="">
+      <div className="flex justify-center py-6 pt-6 text-2xl">일반</div>
       <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
-        {props.currentHeroCard
-          .filter((card) => card.rarityId === 1)
-          .map((card) => {
-            return <Card card={card} />;
-          })}
+        {commonCard.map((card) => {
+          return <Card card={card} color={"bg-gray-50"}/>;
+        })}
       </div>
       <div className="flex justify-center my-6 text-2xl">희귀</div>
       <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
-        {props.currentHeroCard
-          .filter((card) => card.rarityId === 3)
-          .map((card) => {
-            return <Card card={card} />;
-          })}
+        {rareCard.map((card) => {
+          return <Card card={card} color={"bg-blue-300"} />;
+        })}
       </div>
       <div className="flex justify-center my-6 text-2xl">영웅</div>
       <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
-        {props.currentHeroCard
-          .filter((card) => card.rarityId === 4)
-          .map((card) => {
-            return <Card card={card} />;
-          })}
+        {epicCard.map((card) => {
+          return <Card card={card} color={"bg-purple-500"}/>;
+        })}
       </div>
       <div className="flex justify-center my-6 text-2xl">전설</div>
       <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
-        {props.currentHeroCard
-          .filter((card) => card.rarityId === 5)
-          .map((card) => {
-            return <Card card={card} />;
-          })}
+        {legendaryCard.map((card) => {
+          return <Card card={card} color={"bg-yellow-500"}/>;
+        })}
       </div>
-    </>
+    </div>
   );
 };
 

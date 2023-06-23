@@ -47,7 +47,8 @@ const App: React.FC = () => {
           );
         })}
       </div>
-      <CardContainer currentHeroCard={currentHeroCard} />
+      <div className="h-24"/>
+      <CardContainer currentHeroCard={currentHeroCard}/>
     </>
   );
 };
