@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CardStructure } from "../card.model";
 
 // 카드 데이터 구조 정의
 interface CardProps {
   card: CardStructure;
-  color: string
-};
+  cardFilter: string[];
+}
 
 const Card: React.FC<CardProps> = (props) => {
-
   const [onImage, setOnImage] = useState(false);
+  const [onFilter, setOnFilter] = useState(false);
+
+  useEffect(() => {
+    setOnFilter(false);
+    for (let filter of props.cardFilter) {
+      if (filter.length !== 0 && props.card.name.includes(filter)) {
+        setOnFilter(true);
+        break;
+      }
+    }
+  }, [props.cardFilter, props.card.name]);
 
   return (
     <>
@@ -18,6 +28,7 @@ const Card: React.FC<CardProps> = (props) => {
         className="flex justify-center w-60 m-2 border rounded-2xl z-10"
         key={props.card.id}
         onClick={() => setOnImage(!onImage)}
+        style={{ backgroundColor: onFilter ? "lightGrey" : "" }}
       >
         {props.card.name}
       </div>

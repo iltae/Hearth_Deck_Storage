@@ -4,6 +4,7 @@ import { CardStructure } from "../card.model";
 import { heros } from "./heros";
 
 import HeroSelectButton from "./HeroSelectButton";
+import SearchInput from "./SearchInput";
 import CardContainer from "./CardContainer";
 
 const App: React.FC = () => {
@@ -11,6 +12,9 @@ const App: React.FC = () => {
 
   // 현재 직업에 맞는 카드 데이터 저장
   const [currentHeroCard, setCurrentHeroCard] = useState<CardStructure[]>([]);
+
+  // 카드 검색 데이터 저장
+  const [cardFilter, setCardFilter] = useState<string[]>([]);
 
   // Oauth 통신을 위한 POST 요청 및 ACCESS_TOKEN 저장
   useEffect(() => {
@@ -33,10 +37,18 @@ const App: React.FC = () => {
     setCurrentHeroCard(card);
   };
 
+  // 검색 데이터 상태 끌어올리기 위한 함수
+  const filterCardHandler = (filter: string[]) => {
+    setCardFilter(filter);
+    console.log(cardFilter);
+  };
+
   return (
     <>
-      <div className="flex flex-nowrap justify-center my-12 text-5xl">HEARTHSTONE ARENA CARD LIST</div>
-      <div className="flex flex-nowrap justify-center" >
+      <div className="flex flex-nowrap justify-center my-12 text-5xl">
+        하스스톤 투기장 카드 목록
+      </div>
+      <div className="flex flex-nowrap justify-center">
         {heroData.map((el) => {
           return (
             <HeroSelectButton
@@ -47,8 +59,15 @@ const App: React.FC = () => {
           );
         })}
       </div>
-      <div className="h-24"/>
-      <CardContainer currentHeroCard={currentHeroCard}/>
+      <div className="h-12" />
+      <SearchInput filterCardHandler={filterCardHandler} />
+      <div className="h-12" />
+      {currentHeroCard.length !== 0 && (
+        <CardContainer
+          currentHeroCard={currentHeroCard}
+          cardFilter={cardFilter}
+        />
+      )}
     </>
   );
 };
