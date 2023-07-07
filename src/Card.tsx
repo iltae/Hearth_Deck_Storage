@@ -25,15 +25,20 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <>
       <div
-        className="flex justify-center w-60 m-2 border rounded-2xl z-10 text-white font-bold"
+        className="flex justify-center items-center w-60 h-10 m-2 border border-black rounded-2xl z-10 text-gray-100 font-thin"
         key={props.card.id}
         onClick={() => setOnImage(!onImage)}
         style={{
           backgroundImage: `url(${props.card.image})`,
           backgroundPosition: "47% 23%",
-          backgroundSize: "222%",
-          textShadow: "2px 0 black, 0 2px black, -2px 0 black, 0 -2px black",
-          boxShadow: onFilter ? "0.5rem 0 white, 0 0.5rem white, -0.5rem 0 white, 0 -0.5rem white" : "",
+          backgroundSize: "223%",
+          textShadow: onFilter
+            ? "1.5px 0 white, 0 1.5px white, -1.5px 0 white, 0 -1.5px white"
+            : "1.5px 0 black, 0 1.5px black, -1.5px 0 black, 0 -1.5px black",
+          boxShadow: onFilter
+            ? "0.2rem 0.2rem black, -0.2rem -0.2rem black, 0.2rem -0.2rem black, -0.2rem 0.2rem black"
+            : "",
+          color: onFilter ? "black" : "",
         }}
       >
         {props.card.name}

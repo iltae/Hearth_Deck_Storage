@@ -47,9 +47,9 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-800">
+    <div className="bg-gray-800" style={{ fontFamily: "main" }}>
       <div className="flex flex-nowrap justify-center py-12 text-5xl text-gray-200">
-        하스스톤 투기장 카드 목록
+        하스스톤 투기장 카드 리스트
       </div>
       <div className="flex flex-nowrap justify-center">
         {heroData.map((el) => {
@@ -63,18 +63,20 @@ const App: React.FC = () => {
         })}
       </div>
       <div className="h-12" />
-      <div className="text-4xl text-gray-200 flex justify-center">{currentHero}</div>
+      <div className="text-4xl text-gray-200 flex justify-center">
+        직업: {currentHero}
+      </div>
       <div className="flex justify-end mx-4">
         <SearchInput filterCardHandler={filterCardHandler} />
       </div>
       <div className="h-12" />
-
       {currentHeroCard.length !== 0 && (
         <CardContainer
           currentHeroCard={currentHeroCard}
           cardFilter={cardFilter}
         />
       )}
+      <a href="/#">상단</a>
     </div>
   );
 };

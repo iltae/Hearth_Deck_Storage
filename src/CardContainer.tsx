@@ -30,7 +30,7 @@ const CardContainer: React.FC<CardsProps> = (props) => {
         <DiamondIcon className="mr-2" />
         일반
       </div>
-      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
+      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl bg-gray-600">
         {commonCard.map((card) => {
           return (
             <Card card={card} key={card.id} cardFilter={props.cardFilter} />
@@ -41,7 +41,7 @@ const CardContainer: React.FC<CardsProps> = (props) => {
         <DiamondIcon className="mr-2" />
         희귀
       </div>
-      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
+      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl bg-blue-900">
         {rareCard.map((card) => {
           return (
             <Card card={card} key={card.id} cardFilter={props.cardFilter} />
@@ -52,7 +52,7 @@ const CardContainer: React.FC<CardsProps> = (props) => {
         <DiamondIcon className="mr-2" />
         특급
       </div>
-      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
+      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl bg-purple-900">
         {epicCard.map((card) => {
           return (
             <Card card={card} key={card.id} cardFilter={props.cardFilter} />
@@ -63,7 +63,7 @@ const CardContainer: React.FC<CardsProps> = (props) => {
         <DiamondIcon className="mr-2" />
         전설
       </div>
-      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl">
+      <div className="flex flex-wrap h-auto mx-4 border border-black p-4 rounded-2xl bg-yellow-900">
         {legendaryCard.map((card) => {
           return (
             <Card card={card} key={card.id} cardFilter={props.cardFilter} />
