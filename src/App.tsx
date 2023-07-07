@@ -10,6 +10,9 @@ import CardContainer from "./CardContainer";
 const App: React.FC = () => {
   const heroData = heros;
 
+  // 현재 직업
+  const [currentHero, setCurrentHero] = useState<string>("");
+
   // 현재 직업에 맞는 카드 데이터 저장
   const [currentHeroCard, setCurrentHeroCard] = useState<CardStructure[]>([]);
 
@@ -33,19 +36,19 @@ const App: React.FC = () => {
   }, []);
 
   // 버튼 클릭 후 카드 데이터 상태 끌어올리기 위한 함수
-  const currentHeroCardHandler = (card: CardStructure[]) => {
+  const currentHeroCardHandler = (card: CardStructure[], hero: string) => {
+    setCurrentHero(hero);
     setCurrentHeroCard(card);
   };
 
   // 검색 데이터 상태 끌어올리기 위한 함수
   const filterCardHandler = (filter: string[]) => {
     setCardFilter(filter);
-    console.log(cardFilter);
   };
 
   return (
-    <>
-      <div className="flex flex-nowrap justify-center my-12 text-5xl">
+    <div className="bg-gray-800">
+      <div className="flex flex-nowrap justify-center py-12 text-5xl text-gray-200">
         하스스톤 투기장 카드 목록
       </div>
       <div className="flex flex-nowrap justify-center">
@@ -60,15 +63,19 @@ const App: React.FC = () => {
         })}
       </div>
       <div className="h-12" />
-      <SearchInput filterCardHandler={filterCardHandler} />
+      <div className="text-4xl text-gray-200 flex justify-center">{currentHero}</div>
+      <div className="flex justify-end mx-4">
+        <SearchInput filterCardHandler={filterCardHandler} />
+      </div>
       <div className="h-12" />
+
       {currentHeroCard.length !== 0 && (
         <CardContainer
           currentHeroCard={currentHeroCard}
           cardFilter={cardFilter}
         />
       )}
-    </>
+    </div>
   );
 };
 
