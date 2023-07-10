@@ -3,7 +3,7 @@ import { CardStructure } from "../card.model";
 // Props 구조 정의
 type HeroProps = {
   heros: { class: string; name: string; image: string };
-  currentHeroCardHandler: (card: CardStructure[], hero:string) => void;
+  currentHeroCardHandler: (card: CardStructure[], hero: string) => void;
 };
 
 const HeroSelectButton: React.FC<HeroProps> = (props) => {
@@ -21,6 +21,7 @@ const HeroSelectButton: React.FC<HeroProps> = (props) => {
       .then((response) => response.json())
       .then((data) => {
         props.currentHeroCardHandler(data.cards, props.heros.name);
+        console.log(data.cards)
       });
   };
 
