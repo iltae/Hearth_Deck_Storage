@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardStructure } from "../card.model";
 
 import Card from "./Card";
@@ -28,6 +28,13 @@ const CardContainer: React.FC<CardsProps> = (props) => {
   const epicCard = currentCard.filter((card) => card.rarityId === 4);
 
   const legendaryCard = currentCard.filter((card) => card.rarityId === 5);
+
+  // 직업 변경 시 초기화
+  useEffect(() => {
+    setCurrentCard(props.currentHeroCard);
+    setFilterOrder(1);
+    setOnNeutral(true);
+  }, [props.currentHeroCard]);
 
   // 이름 순 카드 오름차순 정렬
   const nameAscendSort = () => {

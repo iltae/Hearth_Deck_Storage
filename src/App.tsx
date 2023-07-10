@@ -7,6 +7,8 @@ import HeroSelectButton from "./HeroSelectButton";
 import SearchInput from "./SearchInput";
 import CardContainer from "./CardContainer";
 
+import DiamondIcon from "@mui/icons-material/Diamond";
+
 const App: React.FC = () => {
   const heroData = heros;
 
@@ -71,7 +73,12 @@ const App: React.FC = () => {
           );
         })}
       </div>
-      <div className="h-12" />
+      <div className="h-16 mx-6 flex justify-end">
+        <DiamondIcon className="text-gray-200 m-2" />
+        <DiamondIcon className="text-blue-400 m-2" />
+        <DiamondIcon className="text-purple-400 m-2" />
+        <DiamondIcon className="text-yellow-400 m-2" />
+      </div>
       <div className="text-4xl text-gray-200 flex justify-center">
         {currentHeroCard.length === 0
           ? `영웅을 골라주세요`
