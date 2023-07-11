@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": [
-      "es2016",
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["es2016", "dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,9 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": ["./@types", "./node_modules/@types"]
   },
-  "include": [
-    "src"
-, "src/heros.ts"  ]
+  "include": ["src", "src/heros.ts"]
 }

@@ -21,7 +21,6 @@ const HeroSelectButton: React.FC<HeroProps> = (props) => {
       .then((response) => response.json())
       .then((data) => {
         props.currentHeroCardHandler(data.cards, props.heros.name);
-        console.log(data.cards)
       });
   };
 
